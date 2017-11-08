@@ -7,11 +7,10 @@
     android:orientation="vertical"
     tools:context="com.example.dominika.gestureapp.feature.LoginActivity">
 
-    <EditText
-        android:id="@+id/editText4"
+    <Button
+        android:id="@+id/pictureBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text|textPersonName"
-        android:text="Name" />
+        android:onClick="dispatchTakePictureIntent"
+        android:text="Zrób zdjęcie" />
 </LinearLayout>

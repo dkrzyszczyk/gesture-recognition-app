@@ -26,16 +26,20 @@ public final class GestureDB {
         public static final String FIRSTNAME = "firstName";
         public static final String LASTNAME = "lastName";
         public static final String GESTURE = "gesture";
+        public static final String WHITES = "whitePixels";
+        public static final String BLACKS = "blackPixels";
         public static final String ID = "id";
-        private static final String[] COLUMNS = {ID,FIRSTNAME,LASTNAME,GESTURE};
+        private static final String[] COLUMNS = {ID,FIRSTNAME,LASTNAME,GESTURE,WHITES,BLACKS};
     }
 
     public static class Gesture {
         public String firstname;
         public String lastname;
         public String gesture;
-        public Integer id;
-        public void setId(Integer id) {
+        public int whitePixels;
+        public int blackPixels;
+        public String id;
+        public void setId(String id) {
             this.id = id;
         }
         public void setFirstname (String firstname) {
@@ -47,14 +51,18 @@ public final class GestureDB {
         public void setGesture(String gesture) {
             this.gesture = gesture;
         }
+        public void setWhitePixels(int whitePixels) {this.whitePixels = whitePixels;}
+        public void setBlacksPixels(int blackPixels) {this.blackPixels = blackPixels;}
     }
 
     public static class DBHelper extends SQLiteOpenHelper {
 
         public static final String DB_CREATE_GESTURE_TABLE = "CREATE TABLE " + GestureEntry.TABLE_NAME +
-                " ( "+ GestureEntry.ID + " int, " + GestureEntry.FIRSTNAME + " text, " +
-                GestureEntry.LASTNAME + " text, " + GestureEntry.GESTURE + " text )" ;
-        public static final int DB_VERSION = 1;
+                " ( "+ GestureEntry.ID + " text, " + GestureEntry.FIRSTNAME + " text, " +
+                GestureEntry.LASTNAME + " text, " + GestureEntry.GESTURE + " text, " +
+                GestureEntry.WHITES + " text, " + GestureEntry.BLACKS + " text )" ;
+        public static final String DB_DROP_GESTURE_TABLE = "DROP TABLE IF EXISTS " + GestureEntry.TABLE_NAME;
+        public static final int DB_VERSION = 5;
 
         public DBHelper(Context context, String name,
                         SQLiteDatabase.CursorFactory factory, int version) {
@@ -71,7 +79,8 @@ public final class GestureDB {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-
+            db.execSQL(DB_DROP_GESTURE_TABLE);
+            db.execSQL(DB_CREATE_GESTURE_TABLE);
         }
 
         public void addGesture(Gesture gesture){
@@ -83,9 +92,12 @@ public final class GestureDB {
 
             // 2. create ContentValues to add key "column"/value
             ContentValues values = new ContentValues();
+            values.put(GestureEntry.ID, gesture.id);
             values.put(GestureEntry.FIRSTNAME, gesture.firstname); // get title
             values.put(GestureEntry.LASTNAME, gesture.lastname); // get author
             values.put(GestureEntry.GESTURE, gesture.gesture); // get author
+            values.put(GestureEntry.WHITES, gesture.whitePixels);
+            values.put(GestureEntry.BLACKS, gesture.blackPixels);
 
             // 3. insert
             db.insert(GestureEntry.TABLE_NAME, // table
@@ -96,7 +108,7 @@ public final class GestureDB {
             db.close();
         }
 
-        public Gesture getGesture(int id){
+        public Gesture getGesture(String id){
 
             // 1. get reference to readable DB
             SQLiteDatabase db = this.getReadableDatabase();
@@ -106,7 +118,7 @@ public final class GestureDB {
                     db.query(GestureEntry.TABLE_NAME, // a. table
                             GestureEntry.COLUMNS, // b. column names
                             " id = ?", // c. selections
-                            new String[] { String.valueOf(id) }, // d. selections args
+                            new String[] { id }, // d. selections args
                             null, // e. group by
                             null, // f. having
                             null, // g. order by
@@ -118,10 +130,12 @@ public final class GestureDB {
 
             // 4. build book object
             Gesture gesture = new Gesture();
-            gesture.setId(Integer.parseInt(cursor.getString(0)));
+            gesture.setId(cursor.getString(0));
             gesture.setFirstname(cursor.getString(1));
             gesture.setLastname(cursor.getString(2));
             gesture.setGesture(cursor.getString(3));
+            gesture.setWhitePixels(cursor.getInt(4));
+            gesture.setBlacksPixels(cursor.getInt(5));
 
             //log
             Log.d(DEBUG_TAG, gesture.toString());
@@ -142,16 +156,15 @@ public final class GestureDB {
 
             // 3. go over each row, build book and add it to list
             Gesture gesture = null;
-            Log.d(DEBUG_TAG, "Po raz pierwszy111");
             if (cursor.moveToFirst()) {
-                Log.d(DEBUG_TAG, "Po raz pierwszy");
                 do {
                     gesture = new Gesture();
-//                    gesture.setId(Integer.parseInt(cursor.getString(0)));
-                    gesture.setId(1);
+                    gesture.setId(cursor.getString(0));
                     gesture.setFirstname(cursor.getString(1));
                     gesture.setLastname(cursor.getString(2));
                     gesture.setGesture(cursor.getString(3));
+                    gesture.setWhitePixels(cursor.getInt(4));
+                    gesture.setBlacksPixels(cursor.getInt(5));
                     Log.d(DEBUG_TAG, cursor.getString(1));
 
                     // Add book to books
@@ -166,6 +179,22 @@ public final class GestureDB {
             // return books
             return gestures;
         }
+        public void deleteAll() {
 
+            // 1. build the query
+            String query = "DELETE FROM " + GestureEntry.TABLE_NAME;
+//            String query = "DROP DATABASE " + GestureEntry.TABLE_NAME;
+            // 2. get reference to writable DB
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.execSQL(query);
+
+            db.close();
+        }
+
+        public void deleteGesture(String id) {
+            SQLiteDatabase db = this.getWritableDatabase();
+            db.delete(GestureEntry.TABLE_NAME, GestureEntry.ID + "='" + id + "'", null);
+            db.close();
+        }
     }
 }
