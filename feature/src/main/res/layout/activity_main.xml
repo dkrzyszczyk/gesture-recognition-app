@@ -4,39 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:gravity="fill_horizontal"
     android:orientation="vertical"
     tools:context="com.example.dominika.gestureapp.feature.MainActivity">
 
-    <Button
-        android:id="@+id/registerBtn"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="goToRegister"
-        android:text="Zarejestruj" />
+        android:layout_height="match_parent"
+        android:layout_weight="0">
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="goToLogin"
-        android:text="Zaloguj" />
+        <Button
+            android:id="@+id/authorsBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:text="Autorzy" />
 
-    <Button
-        android:id="@+id/galleryBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="goToGallery"
-        android:text="Galeria" />
+        <Button
+            android:id="@+id/RulesBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/registerBtn"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/galleryBtn"
+            android:layout_toRightOf="@id/galleryBtn"
+            android:layout_weight="0.5"
+            android:text="Instrukcja" />
 
-    <Button
-        android:id="@+id/clearDB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:onClick="clearDB"
-        android:text="Wyczysc baze" />
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/loginBtn"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@id/galleryBtn"
+            android:layout_weight="0.5"
+            android:onClick="goToRegister"
+            android:text="Zarejestruj" />
+
+        <Button
+            android:id="@+id/loginBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/clearDB"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@id/galleryBtn"
+            android:layout_weight="0.5"
+            android:onClick="goToLogin"
+            android:text="Zaloguj" />
+
+        <Button
+            android:id="@+id/galleryBtn"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_above="@+id/clearDB"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0"
+            android:onClick="goToGallery"
+            android:text="Galeria" />
+
+        <Button
+            android:id="@+id/clearDB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="0.5"
+            android:onClick="clearDB"
+            android:text="Wyczyść bazę" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/registerBtn"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="21dp"
+            app:srcCompat="@drawable/logo" />
+
+    </RelativeLayout>
 
 </LinearLayout>
