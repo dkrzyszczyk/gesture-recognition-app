@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 2;
 
+    // take a picture
     public void dispatchTakePictureIntent(View view) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {

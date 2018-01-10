@@ -42,4 +42,14 @@ public class MainActivity extends AppCompatActivity {
         dlgAlert.setCancelable(true);
         dlgAlert.create().show();
     }
+
+    public void goToAuthor(View view) {
+        Intent intent = new Intent(this, AuthorActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToRules(View view) {
+        Intent intent = new Intent(this, RulesActivity.class);
+        startActivity(intent);
+    }
 }

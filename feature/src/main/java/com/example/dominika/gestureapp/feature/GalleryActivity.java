@@ -49,26 +49,6 @@ public class GalleryActivity extends AppCompatActivity {
 
             blurredImage.setImageBitmap(image);
             blurredImage.setUuid(g.id);
-//            blurredImage.setOnClickListener(new View.OnClickListener() {
-//                boolean delete = false;
-//                @Override
-//                public void onClick(View view) {
-//                    new AlertDialog.Builder(this)
-//                            .setIcon(android.R.drawable.ic_dialog_alert)
-//                            .setTitle("KOMUNIKAT")
-//                            .setMessage("Czy na pewno chcesz usunąć zdjęcie z bazy danych?")
-//                            .setPositiveButton("Tak", new DialogInterface.OnClickListener()
-//                            {
-//                                @Override
-//                                public void onClick(DialogInterface dialog, int which) {
-//                                    this.delete = true;
-//                                }
-//
-//                            })
-//                            .setNegativeButton("Nie", null)
-//                            .show();
-//                }
-//            });
             Float first = (float)g.whitePixels;
             Float second = (float)g.blackPixels;
             float ratio = first/second;

@@ -14,7 +14,8 @@
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Imię" />
+        android:text="Imię"
+        android:textColorLink="@android:color/background_dark" />
 
     <EditText
         android:id="@+id/lastNameTxt"
@@ -23,7 +24,8 @@
         android:layout_weight="1"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nazwisko" />
+        android:text="Nazwisko"
+        android:textColorLink="@android:color/background_dark" />
 
     <Button
         android:id="@+id/button"
@@ -32,12 +34,5 @@
         android:layout_weight="1"
         android:onClick="dispatchTakePictureIntent"
         android:text="Zrob zdjecie" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:srcCompat="@color/colorAccent" />
 
 </LinearLayout>

@@ -13,4 +13,68 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="title_activity_author">AuthorActivity</string>
+    <string name="textShort">
+    Cześć!\n
+        Autorami prezentowanej aplikacji są\n
+        Dominika Krzyszczyk i Piotr Maruszewski\n
+        studenci Politechniki Gdańskiej.\n
+        Aplikacja jest produktem zabawy z\n
+        metodami identyfikacji i weryfikacji\n
+        oscylującymi w obszarze Biometrii.\n
+        Realizuje podstawowe funkcje, natomiast\n
+        Zamierzamy ją udoskonalać! :)\n
+        W razie pytań, pisz śmiało na:\n
+        krzyszczykdominika@gmail.com\n
+        Do usłyszenia!\n
+    </string>
+
+    <string name="rulesText">
+        Drogi użytkowniku!
+        \n
+        \n
+        Przycisk "Autorzy":\n
+        - wyświetla krótką informację dotyczącą autorów\n
+        - zawarty jest kanał kontaktowy z autorami\n
+        \n
+        Przycisk "Galeria":\n
+        - zawiera trzy kolumny\n
+        - pierwsza to imię użytkownika\n
+        - druga to nazwisko użytkownika\n
+        - trzecia to współczynnik stosunku\n
+          białych i czarnych pikseli\n
+        - czwarta to zdjęcie przypisanego gestu\n
+        \n
+        Galeria pełni wyłącznie funkcję\n
+        poglądową działania aplikacji\n
+        docelowo będzie niewidoczna\n
+        z panelu użytkownika.\n
+        \n
+        Przycisk "Zarejestruj":\n
+        - należy wprowadzić imię użytkownika\n
+        - należy wprowadzić nazwisko użytkownika\n
+        - należy wykonać zdjęcie gestu\n
+        \n
+        Przycisk "Zaloguj":\n
+        - należy wykonać zdjęcie gestu wykonanego przy rejestracji\n
+        \n
+        Uwaga!\n
+        Ważne jest, by wykonać zdjęcie\n
+        zgodnie z poniższymi instrukcjami:\n\n
+        - kontrastowe tło (najlepiej ciemne, czarne)\n
+        - dobre, równomierne oświetlenie\n(najlepiej naturalne, mniej cieni)\n
+        - z odległości 20-25 cm\n
+        - tak, by gest był wykadrowany centralnie\n\n
+        Pozwoli to uzyskać zadawalające efekty po unormowaniu danych,\n
+        bez ryzyka wystąpienia błędu.\n
+        \n
+        Przycisk "Wyczyść bazę":\n
+        - usuwa wszystkie dane w bazie\n
+        \n
+        \n
+        Miłego użytkowania!
+        \n
+    </string>
+
+    <string name="title_activity_rules">RulesActivity</string>
 </resources>

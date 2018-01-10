@@ -87,33 +87,33 @@ public final class GestureDB {
             //for logging
             Log.d(DEBUG_TAG, gesture.toString());
 
-            // 1. get reference to writable DB
+            // get reference to writable DB
             SQLiteDatabase db = this.getWritableDatabase();
 
-            // 2. create ContentValues to add key "column"/value
+            //create ContentValues to add key "column"/value
             ContentValues values = new ContentValues();
             values.put(GestureEntry.ID, gesture.id);
-            values.put(GestureEntry.FIRSTNAME, gesture.firstname); // get title
-            values.put(GestureEntry.LASTNAME, gesture.lastname); // get author
-            values.put(GestureEntry.GESTURE, gesture.gesture); // get author
-            values.put(GestureEntry.WHITES, gesture.whitePixels);
-            values.put(GestureEntry.BLACKS, gesture.blackPixels);
+            values.put(GestureEntry.FIRSTNAME, gesture.firstname); // get firstname
+            values.put(GestureEntry.LASTNAME, gesture.lastname); // get lastname
+            values.put(GestureEntry.GESTURE, gesture.gesture); // get gesture
+            values.put(GestureEntry.WHITES, gesture.whitePixels); // get whitePixels
+            values.put(GestureEntry.BLACKS, gesture.blackPixels); // get blackPixels
 
-            // 3. insert
+            //insert
             db.insert(GestureEntry.TABLE_NAME, // table
                     null, //nullColumnHack
                     values); // key/value -> keys = column names/ values = column values
 
-            // 4. close
+            //close
             db.close();
         }
 
         public Gesture getGesture(String id){
 
-            // 1. get reference to readable DB
+            //get reference to readable DB
             SQLiteDatabase db = this.getReadableDatabase();
 
-            // 2. build query
+            //build query
             Cursor cursor =
                     db.query(GestureEntry.TABLE_NAME, // a. table
                             GestureEntry.COLUMNS, // b. column names
@@ -124,11 +124,11 @@ public final class GestureDB {
                             null, // g. order by
                             null); // h. limit
 
-            // 3. if we got results get the first one
+            //if we got results get the first one
             if (cursor != null)
                 cursor.moveToFirst();
 
-            // 4. build book object
+            //build gesture object
             Gesture gesture = new Gesture();
             gesture.setId(cursor.getString(0));
             gesture.setFirstname(cursor.getString(1));
@@ -140,21 +140,21 @@ public final class GestureDB {
             //log
             Log.d(DEBUG_TAG, gesture.toString());
 
-            // 5. return book
+            //return gesture
             return gesture;
         }
 
         public List<Gesture> getAllGestures() {
             List<Gesture> gestures = new LinkedList<Gesture>();
 
-            // 1. build the query
+            //build the query
             String query = "SELECT  * FROM " + GestureEntry.TABLE_NAME;
 
-            // 2. get reference to writable DB
+            //get reference to writable DB
             SQLiteDatabase db = this.getWritableDatabase();
             Cursor cursor = db.rawQuery(query, null);
 
-            // 3. go over each row, build book and add it to list
+            //go over each row, build gesture and add it to list
             Gesture gesture = null;
             if (cursor.moveToFirst()) {
                 do {
@@ -167,7 +167,7 @@ public final class GestureDB {
                     gesture.setBlacksPixels(cursor.getInt(5));
                     Log.d(DEBUG_TAG, cursor.getString(1));
 
-                    // Add book to books
+                    //add gesture to gestures
                     gestures.add(gesture);
                 } while (cursor.moveToNext());
             }
@@ -181,10 +181,10 @@ public final class GestureDB {
         }
         public void deleteAll() {
 
-            // 1. build the query
+            //build the query
             String query = "DELETE FROM " + GestureEntry.TABLE_NAME;
-//            String query = "DROP DATABASE " + GestureEntry.TABLE_NAME;
-            // 2. get reference to writable DB
+            //String query = "DROP DATABASE " + GestureEntry.TABLE_NAME;
+            //get reference to writable DB
             SQLiteDatabase db = this.getWritableDatabase();
             db.execSQL(query);
 

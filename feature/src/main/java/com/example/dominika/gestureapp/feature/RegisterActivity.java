@@ -45,10 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ImageView iv = findViewById(R.id.imageView);
             EditText firstname = findViewById(R.id.name);
             EditText lastname = findViewById(R.id.lastNameTxt);
-            iv.setImageBitmap(imageBitmap);
             Bitmap binaryImage = toBinary(imageBitmap);
             Bitmap cropped = minimalRectangle(removeNoise(toGrayscale(binaryImage)));
             Pair<Integer,Integer> binaryResult = getMetric(cropped);
